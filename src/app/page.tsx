@@ -1,101 +1,156 @@
-import Image from "next/image";
+'use client'
+
+
+import MainLayout from '@/components/layout/MainLayout'
+import Image from 'next/image'
+import { Star, ArrowRight, Sparkles } from 'lucide-react'
+
+const tools = [
+  {
+    id: 1,
+    title: 'AI图像生成器',
+    description: '使用先进的AI技术生成高质量图像',
+    image: 'https://picsum.photos/400/300?random=1',
+    category: '图像工具',
+    rating: 4.8,
+    features: ['高清生成', '多风格支持', '批量处理', 'API集成']
+  },
+  {
+    id: 2,
+    title: 'AI文本助手',
+    description: '智能文本生成和编辑工具',
+    image: 'https://picsum.photos/400/300?random=2',
+    category: '办公工具',
+    rating: 4.6,
+    features: ['智能写作', '文本优化', '多语言翻译', '语法检查']
+  },
+  {
+    id: 3,
+    title: 'AI视频编辑器',
+    description: '一键生成专业级视频内容',
+    image: 'https://picsum.photos/400/300?random=3',
+    category: '视频工具',
+    rating: 4.7,
+    features: ['智能剪辑', '特效生成', '字幕制作', '风格迁移']
+  }
+]
+
+const categories = [
+  '图像生成',
+  '文本处理',
+  '代码助手',
+  '视频编辑',
+  '语音合成',
+  '数据分析'
+]
+
+interface Breadcrumb {
+  label: string;
+  href: string;
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const breadcrumbs: Breadcrumb[] = []
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+  return (
+    <MainLayout breadcrumbs={breadcrumbs}>
+      <div className="space-y-12">
+        {/* Hero Section */}
+        <section className="relative h-[400px] rounded-xl overflow-hidden">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="https://picsum.photos/1200/400?random=0"
+            alt="特色横幅"
+            fill
+            className="object-cover"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/90 to-transparent">
+            <div className="h-full max-w-4xl mx-auto flex items-center px-6">
+              <div className="text-white">
+                <h1 className="text-5xl font-bold mb-6">
+                  发现最佳AI工具
+                </h1>
+                <p className="text-xl mb-8 text-white/90">
+                  探索、比较和使用顶级AI工具，提升您的工作效率
+                </p>
+                <button className="bg-white text-purple-600 px-8 py-3 rounded-lg font-medium hover:bg-purple-50 transition-colors">
+                  立即探索
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Categories */}
+        <section>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold">热门分类</h2>
+            <button className="text-purple-600 flex items-center hover:underline">
+              查看全部 <ArrowRight className="h-4 w-4 ml-1" />
+            </button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {categories.map((category) => (
+              <button
+                key={category}
+                className="p-4 rounded-xl bg-purple-50 text-purple-600 hover:bg-purple-100 transition-colors text-center font-medium"
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Featured Tools */}
+        <section>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold">推荐工具</h2>
+            <button className="text-purple-600 flex items-center hover:underline">
+              更多工具 <ArrowRight className="h-4 w-4 ml-1" />
+            </button>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tools.map((tool) => (
+              <div
+                key={tool.id}
+                className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div className="relative h-48">
+                  <Image
+                    src={tool.image}
+                    alt={tool.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-sm">
+                      {tool.category}
+                    </span>
+                    <div className="flex items-center text-yellow-400">
+                      <Star className="h-4 w-4 fill-current" />
+                      <span className="ml-1 text-sm text-gray-600">{tool.rating}</span>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{tool.title}</h3>
+                  <p className="text-gray-600 mb-4">{tool.description}</p>
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    {tool.features.map((feature) => (
+                      <div key={feature} className="flex items-center text-sm text-gray-600">
+                        <Sparkles className="h-4 w-4 text-purple-600 mr-2" />
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                  <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                    立即使用
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </MainLayout>
+  )
 }
